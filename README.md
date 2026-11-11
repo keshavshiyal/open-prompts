@@ -1,28 +1,28 @@
 <div align="center">
 
-# 🧩 PromptForge
+# 🌐 open-prompts
 
-**Treat Prompts as Code. Modular, parameterized, and battle-tested prompt templates for developers, educators, and local AI workflows.**
+**Treat Prompts as Code. An open-source, modular, and parameterized prompt library for developers, educators, and local AI workflows.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 [![Prompts Count](https://img.shields.io/badge/Prompts-Curated-orange.svg)](#📂-prompt-directory)
-[![Live Explorer](https://img.shields.io/badge/Web_UI-GitHub_Pages-purple.svg)](https://keshavshiyal.github.io/prompt-forge/)
+[![Live Explorer](https://img.shields.io/badge/Web_UI-GitHub_Pages-purple.svg)](https://keshavshiyal.github.io/open-prompts/)
 
-[🌐 Launch Live Prompt Builder](https://keshavshiyal.github.io/prompt-forge/) • [📖 Schema Docs](#📐-prompt-architecture) • [⚡ CLI Usage](#💻-cli--ollama-integration)
+[🌐 Launch Live Prompt Explorer](https://keshavshiyal.github.io/open-prompts/) • [📐 Prompt Schema](#📐-prompt-architecture) • [⚡ CLI & Ollama Usage](#💻-cli--ollama-integration)
 
 </div>
 
 ---
 
-## 💡 Why This Repository Exists
+## 💡 Why `open-prompts`?
 
-Most prompt repositories are unorganized text dumps with vague instructions and zero testing. **PromptForge** treats prompts like modular software components:
+Most prompt repositories are unorganized text dumps with vague instructions and zero version control. **`open-prompts`** treats prompts like modular software components:
 
 - **🎯 Parameterized Variables:** Strict `{{variable}}` syntax instead of messy `[insert text here]` placeholders.
-- **🤖 Model-Aware:** Explicitly tagged with recommended parameter sizes (works great with local 3B–8B models on **Ollama** as well as frontier models).
+- **🤖 Model-Aware:** Explicitly tagged with tested models—optimized for both lightweight local models on **Ollama** (3B–8B) and frontier cloud LLMs.
 - **📦 Structured Metadata:** Every prompt uses YAML Frontmatter for easy parsing into JSON, CLIs, and web apps.
-- **🌐 Zero-Dependency Web UI:** Includes a single-file, offline-ready HTML explorer to fill in variables and copy prompts in one click.
+- **🌐 Zero-Dependency Web UI:** Includes a single-file, offline-ready HTML explorer to fill in variables and copy compiled prompts in one click.
 
 ---
 
@@ -40,7 +40,7 @@ Most prompt repositories are unorganized text dumps with vague instructions and 
 
 ## 📐 Prompt Architecture
 
-Every prompt in this repository follows a strict Markdown + YAML Frontmatter standard located in [`schemas/prompt-template.md`](./schemas/prompt-template.md):
+Every prompt in `open-prompts` follows a strict Markdown + YAML Frontmatter standard located in [`schemas/prompt-template.md`](./schemas/prompt-template.md):
 
 ```markdown
 ---
@@ -76,17 +76,17 @@ Create a complete, single-file HTML5 application for a **{{app_purpose}}** using
 ## 🚀 Quick Start
 
 ### 1. Using the Web Interface (Recommended)
-Visit the **[Live Prompt Explorer](https://keshavshiyal.github.io/prompt-forge/)** (or open `index.html` locally in any browser):
-1. Search or filter prompts by tag (`#coding`, `#linux`, `#education`).
-2. Type your custom values into the dynamic variable input fields.
+Visit the **[Live Prompt Explorer](https://keshavshiyal.github.io/open-prompts/)** (or open `index.html` locally in any browser):
+1. Search or filter prompts by category or tag (`#coding`, `#linux`, `#education`).
+2. Enter your custom values into the dynamic variable input fields.
 3. Click **Copy Compiled Prompt** and paste it into your LLM of choice.
 
 ### 2. Cloning Locally
 ```bash
-git clone [https://github.com/keshavshiyal/prompt-forge.git](https://github.com/keshavshiyal/prompt-forge.git)
-cd prompt-forge
+git clone [https://github.com/keshavshiyal/open-prompts.git](https://github.com/keshavshiyal/open-prompts.git)
+cd open-prompts
 
-# Rebuild the master index.json after adding new Markdown prompts
+# Rebuild the master index.json after adding or editing Markdown prompts
 python3 scripts/build-index.py
 ```
 
@@ -94,11 +94,11 @@ python3 scripts/build-index.py
 
 ## 💻 CLI & Ollama Integration
 
-Pipe prompts directly into local models using **Ollama** from your terminal or Termux environment:
+Pipe prompts from `open-prompts` directly into local models using **Ollama** from your Linux terminal or Termux environment:
 
 ```bash
-# Example: Run a prompt file directly with Ollama
-sed -e 's/{{script_goal}}/Backup PostgreSQL database daily/g' \
+# Example: Inject variables and pipe directly into a local Ollama model
+sed -e 's/{{script_goal}}/Backup SQLite files and compress logs daily/g' \
     prompts/linux/bash-script-generator.md | ollama run qwen2.5-coder:7b
 ```
 
@@ -107,7 +107,7 @@ sed -e 's/{{script_goal}}/Backup PostgreSQL database daily/g' \
 ## 🗂️ Repository Structure
 
 ```text
-prompt-forge/
+open-prompts/
 ├── prompts/                  # Categorized Markdown prompt files
 │   ├── coding/
 │   ├── linux/
@@ -115,7 +115,7 @@ prompt-forge/
 │   ├── data/
 │   └── design/
 ├── schemas/
-│   └── prompt-template.md    # Blank template for new prompts
+│   └── prompt-template.md    # Blank template for creating new prompts
 ├── scripts/
 │   └── build-index.py        # Compiles /prompts/*.md into index.json
 ├── index.json                # Auto-generated JSON database of all prompts
@@ -128,11 +128,11 @@ prompt-forge/
 
 ## 🤝 Contributing
 
-Contributions are welcome! To add a new prompt:
+Contributions are welcome! To add a new prompt to `open-prompts`:
 1. Copy [`schemas/prompt-template.md`](./schemas/prompt-template.md) into the appropriate `/prompts/<category>/` folder.
-2. Ensure all `{{variables}}` in the prompt body are declared in the YAML frontmatter.
+2. Ensure all `{{variables}}` used in the prompt body are declared in the YAML frontmatter.
 3. Test the prompt on at least one model and include a sample output inside a `<details>` block.
-4. Run `python3 scripts/build-index.py` and submit a Pull Request.
+4. Run `python3 scripts/build-index.py` to update `index.json` and submit a Pull Request.
 
 ---
 

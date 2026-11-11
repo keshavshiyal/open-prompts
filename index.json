@@ -1,0 +1,161 @@
+[
+  {
+    "id": "vanilla-pwa-scaffold",
+    "title": "Single-File Offline Utility Generator",
+    "category": "coding",
+    "tags": [
+      "vanilla-js",
+      "html5",
+      "pwa",
+      "indexeddb",
+      "offline-first"
+    ],
+    "models": [
+      "Qwen-2.5-Coder-7B",
+      "Gemini-2.5-Pro"
+    ],
+    "temperature": 0.2,
+    "variables": [
+      {
+        "name": "app_purpose",
+        "description": "Core utility goal of the web app",
+        "default": "Trainee Attendance & Record Tracker"
+      },
+      {
+        "name": "storage_engine",
+        "description": "Client-side persistence engine",
+        "default": "IndexedDB"
+      }
+    ],
+    "system": "You are an expert front-end architect specializing in zero-dependency, offline-first single-file web applications. Output clean, complete, production-ready code without external JS or CSS CDN links.",
+    "prompt": "Build a complete, self-contained single-file HTML application (`index.html`) for a **{{app_purpose}}** using **{{storage_engine}}**."
+  },
+  {
+    "id": "strict-json-extractor",
+    "title": "Unstructured Text to Strict JSON Extractor",
+    "category": "data",
+    "tags": [
+      "json",
+      "schema",
+      "etl",
+      "parsing"
+    ],
+    "models": [
+      "Qwen-2.5-7B",
+      "Gemini-2.5-Flash"
+    ],
+    "temperature": 0.0,
+    "variables": [
+      {
+        "name": "schema_keys",
+        "description": "Comma-separated JSON keys to extract",
+        "default": "invoice_id, date, vendor, amount_inr, payment_mode"
+      },
+      {
+        "name": "raw_text",
+        "description": "Unstructured input text",
+        "default": "Paid Rs. 850 via UPI to Narayan Petroleum on 11-11-2026 (Bill #NP-402)."
+      }
+    ],
+    "system": "You are a deterministic data extraction engine. Return ONLY valid, minified JSON matching the requested keys. Do not include Markdown code fences or explanations.",
+    "prompt": "Extract the following keys from the input text: `[{{schema_keys}}]`.\nIf any key cannot be found, set its value to `null`."
+  },
+  {
+    "id": "minimal-svg-icon",
+    "title": "Clean Inline SVG Icon & App Logo Generator",
+    "category": "design",
+    "tags": [
+      "svg",
+      "ui",
+      "icons",
+      "branding",
+      "vector"
+    ],
+    "models": [
+      "Gemini-2.5-Pro",
+      "Qwen-2.5-Coder-7B"
+    ],
+    "temperature": 0.3,
+    "variables": [
+      {
+        "name": "icon_subject",
+        "description": "Subject or symbol for the icon",
+        "default": "Terminal window combined with a lightning bolt"
+      },
+      {
+        "name": "stroke_color",
+        "description": "Primary hex color or currentColor",
+        "default": "#38bdf8"
+      }
+    ],
+    "system": "You are a vector graphics designer specializing in clean, scalable, hand-crafted SVG code. Output valid `<svg>` markup optimized for web UI and app icons.",
+    "prompt": "Generate a modern, minimalist SVG icon representing: **{{icon_subject}}**."
+  },
+  {
+    "id": "bilingual-lab-guide",
+    "title": "Vocational Lab & Bilingual Concept Explainer",
+    "category": "education",
+    "tags": [
+      "curriculum",
+      "copa",
+      "iti",
+      "bilingual",
+      "lab-assignment"
+    ],
+    "models": [
+      "Gemini-2.5-Flash",
+      "Qwen-2.5-7B"
+    ],
+    "temperature": 0.4,
+    "variables": [
+      {
+        "name": "topic",
+        "description": "Technical topic to teach",
+        "default": "JavaScript Array Methods (map, filter, reduce)"
+      },
+      {
+        "name": "regional_language",
+        "description": "Second language for concept summary",
+        "default": "Gujarati"
+      },
+      {
+        "name": "student_level",
+        "description": "Target trainee level",
+        "default": "ITI COPA / BCA Undergraduate"
+      }
+    ],
+    "system": "You are a practical technical instructor who explains computer science concepts using real-world analogies, structured lab exercises, and clear bilingual summaries.",
+    "prompt": "Create a structured study and practical lab guide on **{{topic}}** tailored for **{{student_level}}** trainees."
+  },
+  {
+    "id": "defensive-bash-builder",
+    "title": "Defensive Bash & Termux Script Generator",
+    "category": "linux",
+    "tags": [
+      "bash",
+      "shell",
+      "linux",
+      "termux",
+      "automation"
+    ],
+    "models": [
+      "Qwen-2.5-Coder-7B",
+      "Llama-3.1-8B"
+    ],
+    "temperature": 0.1,
+    "variables": [
+      {
+        "name": "task_goal",
+        "description": "Task to automate",
+        "default": "Incremental SQLite backup with 7-day rotation"
+      },
+      {
+        "name": "target_env",
+        "description": "Target OS environment",
+        "default": "Ubuntu / Termux Android"
+      }
+    ],
+    "system": "You are a senior Linux systems administrator. Write defensive, POSIX-aware Bash scripts with strict error handling and clear logging.",
+    "prompt": "Write a production-ready Bash script for **{{target_env}}** that automates the following task:\n**{{task_goal}}**"
+  }
+]

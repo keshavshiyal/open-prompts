@@ -1,0 +1,33 @@
+name: Build Prompt Index
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'prompts/**/*.md'
+      - 'scripts/build-index.py'
+
+permissions:
+  contents: write
+
+jobs:
+  build-index:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Compile index.json
+        run: python3 scripts/build-index.py
+
+      - name: Commit updated index.json
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add index.json
+          git diff --staged --quiet || (git commit -m "chore: auto-compile index.json" && git push)
